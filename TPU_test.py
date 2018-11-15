@@ -1,7 +1,8 @@
-import numpy as np
-import tensorflow as tf
-import numpy as np
-import functools
+from . import numpy as np
+from . import tensorflow as tf
+from . import numpy as np
+from . import functools
+from tensorflow.contrib.cluster_resolver.python.training.tpu_cluster_resolver import TPUClusterResolver
 
 def do_jam_fw(tensor, name):
   filename = name + b'.bin'
