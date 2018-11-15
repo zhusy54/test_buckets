@@ -104,11 +104,11 @@ def model(features, labels, mode, params):
       loss=loss,
       train_op=train)
 
-tpu_config = tf.contrib.tpu.RunConfig()
+tpu_config = tf.contrib.tpu.RunConfig(master=TPUClusterResolver(tpu=[os.environ['TPU_NAME']]).get_master())
 tpu_config.replace(model_dir='.')
 
 #load customized model to estimator
-estimator = tf.contrib.tpu.TPUEstimator(model_fn=model, config=tpu_config, use_tpu=False, predict_batch_size=4, train_batch_size=4)
+estimator = tf.contrib.tpu.TPUEstimator(model_fn=model, config=tpu_config, use_tpu=True, predict_batch_size=4, train_batch_size=4)
 # define our data sets
 x_train = np.array([1., 2., 3., 4.])
 y_train = np.array([0., -1., -2., -3.])
